@@ -1,7 +1,7 @@
 import itertools
 import string
 import time
-from tqdm import tqdm
+from alive_progress import alive_bar
 
 def brute_force(target_password, max_length):
     start_time = time.time()  # Record the start time
@@ -9,15 +9,20 @@ def brute_force(target_password, max_length):
     # Define the character set for the password guess attempts
     characters = string.ascii_letters + string.digits 
 
-    # Iterate through different password lengths
-    for length in tqdm(range(1, max_length + 1), desc='Progress'):
-        # Iterate through all possible combinations of characters for the current password length
-        for attempt in itertools.product(characters, repeat=length):
-            attempt = ''.join(attempt)
-            if attempt == target_password:
-                end_time = time.time()  # Record the end time
-                duration = end_time - start_time  # Calculate the duration
-                return attempt, duration
+    # Get the total number of password combinations to calculate progress
+    total_combinations = sum(len(characters) ** length for length in range(1, max_length + 1))
+
+    with alive_bar(total_combinations, bar='classic', spinner='dots_waves') as bar:
+        # Iterate through different password lengths
+        for length in range(1, max_length + 1):
+            # Iterate through all possible combinations of characters for the current password length
+            for attempt in itertools.product(characters, repeat=length):
+                attempt = ''.join(attempt)
+                if attempt == target_password:
+                    end_time = time.time()  # Record the end time
+                    duration = end_time - start_time  # Calculate the duration
+                    return attempt, duration
+                bar()  # Increment the progress bar
 
     return None, None
 
@@ -40,4 +45,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
