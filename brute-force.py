@@ -1,6 +1,7 @@
 import itertools
 import string
 import time
+from tqdm import tqdm
 
 def brute_force(target_password, max_length):
     start_time = time.time()  # Record the start time
@@ -9,7 +10,7 @@ def brute_force(target_password, max_length):
     characters = string.ascii_letters + string.digits 
 
     # Iterate through different password lengths
-    for length in range(1, max_length + 1):
+    for length in tqdm(range(1, max_length + 1), desc='Progress'):
         # Iterate through all possible combinations of characters for the current password length
         for attempt in itertools.product(characters, repeat=length):
             attempt = ''.join(attempt)
@@ -39,3 +40,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
