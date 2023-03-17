@@ -14,7 +14,9 @@ The script uses the itertools module to generate all possible combinations of ch
 This script is for educational purposes only and should not be used to gain unauthorised access to any system or account. The use of brute-force attacks to obtain passwords is illegal and unethical.
 
 <h2>Brute-force password guesser for educational purposes only</h2>
-```Enter the target password and the maximum length to guess (up to 6 for reasonable runtimes).
+```python
+Enter the target password and the maximum length to guess (up to 6 for reasonable runtimes).
 Enter the target password: <target_password>
-Enter the maximum length: <max_length>```
+Enter the maximum length: <max_length>
+```
 
