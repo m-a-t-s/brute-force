@@ -2,6 +2,7 @@
 Before running the script, you need to install the alive-progress library. You can do this by running the following command in your terminal:
 
 ```pip install alive-progress```
+
 Once the library is installed, download the script and run it in your preferred Python environment.
 
 <h2>Usage</h2>
